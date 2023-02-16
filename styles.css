@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  margin: auto;
+}
+#outer-container {
+  width: 1000px;
+  height: 1000px;
+  background-color: gray;
+  margin: auto;
+}
+
+#grid-container {
+  width: 800px;
+  height: 800px;
+  background-color: aliceblue;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows:1fr ;
+  gap: 10px;
+}
+
+.grid-item {
+  border-color: rgb(250,3,1);
+  border-width: thin;
+  background-color: yellow;
+}
