@@ -20,13 +20,15 @@ body {
   background-color: aliceblue;
   margin: auto;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows:1fr ;
   gap: 10px;
 }
 
 .grid-item {
-  border-color: rgb(250,3,1);
+  border-color: rgb(250, 3, 1);
   border-width: thin;
   background-color: yellow;
+}
+
+.grid-item-active {
+  background-color: rgb(250, 0, 250);
 }
