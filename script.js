@@ -1,7 +1,14 @@
 "use strict";
 
 const gridContainer = document.getElementById("grid-container");
+const btnReset = document.getElementById("btn-reset");
+const btnColor = document.getElementById("btn-color");
 
+let currentColor = btnColor.value;
+let changeColor = false;
+let gridColor = btnColor.value;
+
+console.log(gridColor);
 function setUpGrid(size) {
   gridContainer.style.gridTemplateColumns = `repeat(${size},1fr)`;
   gridContainer.style.gridTemplateRows = `repeat(${size},1fr)`;
@@ -13,27 +20,38 @@ function setUpGrid(size) {
   }
 }
 
-//change color on mouse down
-function sketch() {
-  let changeColor = false;
-  document.addEventListener("mousedown", function (e) {
-    changeColor = true;
-    if (!(e.target === e.target.closest(".grid-item"))) return;
-    e.target.classList.add("grid-item-active");
-  });
+function colorOnMouseDown(e) {
+  changeColor = true;
+  if (!(e.target === e.target.closest(".grid-item"))) return;
+  e.target.classList.add("grid-item-colored");
+}
+function colorOnMouseOver(e) {
+  if (!(e.target === e.target.closest(".grid-item"))) return;
+  if (!changeColor) return;
+  e.target.classList.add("grid-item-colored");
+}
 
-  gridContainer.addEventListener("mouseover", function (e) {
-    if (!(e.target === e.target.closest(".grid-item"))) return;
-    if (!changeColor) return;
-    e.target.classList.add("grid-item-active");
-  });
-  document.addEventListener("mouseup", function () {
+//change color on mouse down
+function addColorToGrid() {
+  //change color when mouse is down
+  document.addEventListener("mousedown", colorOnMouseDown);
+
+  gridContainer.addEventListener("mouseover", colorOnMouseOver);
+  //when mouse is up cannot change color
+  document.addEventListener("mouseup", () => {
     changeColor = false;
   });
 }
+
 function clearGrid() {
-  gridContainer.innerHTML = "";
+  const allGridItems = document.querySelectorAll(".grid-item");
+  allGridItems.forEach((el) => el.classList.remove("grid-item-colored"));
 }
 
-setUpGrid(8);
-sketch();
+//only function to be run outside a function
+function run() {
+  setUpGrid(100);
+  addColorToGrid();
+  btnReset.addEventListener("click", clearGrid);
+}
+run();

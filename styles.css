@@ -20,7 +20,6 @@ body {
   background-color: aliceblue;
   margin: auto;
   display: grid;
-  gap: 10px;
 }
 
 .grid-item {
@@ -29,6 +28,6 @@ body {
   background-color: yellow;
 }
 
-.grid-item-active {
+.grid-item-colored {
   background-color: rgb(250, 0, 250);
 }
