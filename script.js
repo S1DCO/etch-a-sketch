@@ -5,15 +5,26 @@ const btnReset = document.getElementById("btn-reset");
 const btnColor = document.getElementById("btn-color");
 const gridSize = document.getElementById("grid--size");
 const gridSizeLabel = document.querySelector(".label-grid--size");
+const btnRainbow = document.querySelector(".btn-rainbow");
+const btnEraser = document.querySelector(".btn-eraser");
 
-let currentColor = btnColor.value;
 let changeColor = false;
-let gridColor = btnColor.value;
+
+function currentColor() {
+  if (btnRainbow.classList.contains("btn-rainbow-active")) {
+    let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    return "#" + randomColor;
+  }
+  if (btnEraser.classList.contains("btn-eraser-active")) {
+    return "white";
+  }
+  return btnColor.value;
+}
 
 function setUpGrid() {
   gridContainer.innerHTML = "";
   let size = gridSize.value;
-  gridSizeLabel.textContent = `${size}x${size}`;
+  gridSizeLabel.textContent = `Grid Size: ${size}x${size}`;
   gridContainer.style.gridTemplateColumns = `repeat(${size},1fr)`;
   gridContainer.style.gridTemplateRows = `repeat(${size},1fr)`;
 
@@ -27,12 +38,12 @@ function setUpGrid() {
 function colorOnMouseDown(e) {
   changeColor = true;
   if (!(e.target === e.target.closest(".grid-item"))) return;
-  e.target.style.backgroundColor = currentColor;
+  e.target.style.backgroundColor = currentColor();
 }
 function colorOnMouseOver(e) {
   if (!(e.target === e.target.closest(".grid-item"))) return;
   if (!changeColor) return;
-  e.target.style.backgroundColor = currentColor;
+  e.target.style.backgroundColor = currentColor();
 }
 
 //change color on mouse down
@@ -57,8 +68,17 @@ function clearGrid() {
   allGridItems.forEach((el) => (el.style.backgroundColor = "white"));
 }
 
-function changeCurrentColor() {
-  currentColor = btnColor.value;
+function toggleRainbowButton() {
+  btnRainbow.classList.toggle("btn-rainbow-active");
+  if (btnEraser.classList.contains("btn-eraser-active")) {
+    btnEraser.classList.remove("btn-eraser-active");
+  }
+}
+function toggleEraserButton() {
+  btnEraser.classList.toggle("btn-eraser-active");
+  if (btnRainbow.classList.contains("btn-rainbow-active")) {
+    btnRainbow.classList.remove("btn-rainbow-active");
+  }
 }
 //only function to be run outside a function
 function run() {
@@ -66,6 +86,7 @@ function run() {
   gridSize.addEventListener("change", setUpGrid);
   addColorToGrid();
   btnReset.addEventListener("click", clearGrid);
-  btnColor.addEventListener("change", changeCurrentColor);
+  btnRainbow.addEventListener("click", toggleRainbowButton);
+  btnEraser.addEventListener("click", toggleEraserButton);
 }
 run();
