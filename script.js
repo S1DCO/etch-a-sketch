@@ -66,6 +66,11 @@ function addColorToGrid() {
 function clearGrid() {
   const allGridItems = document.querySelectorAll(".grid-item");
   allGridItems.forEach((el) => (el.style.backgroundColor = "white"));
+  btnEraser.classList.remove("btn-eraser-active");
+  btnRainbow.classList.remove("btn-rainbow-active");
+  btnColor.value = "black";
+  gridSize.value = 100;
+  setUpGrid();
 }
 
 function toggleRainbowButton() {
