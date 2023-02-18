@@ -1,23 +1,56 @@
 * {
   box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
 }
 body {
+  background-color: black;
   width: 100vw;
   height: 100vh;
   text-align: center;
   margin: auto;
+  margin-top: 0px;
+}
+header {
+  background-color: cornflowerblue;
+  margin-bottom: 0px;
+  height: 5vh;
 }
 #outer-container {
-  width: 1000px;
-  height: 1000px;
+  width: 65vw;
+  height: 90vh;
   background-color: gray;
   margin: auto;
+  position: relative;
+}
+
+#button-container {
+  height: 50%;
+  width: 25%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+
+  position: absolute;
+  top: 3em;
+  left: 10px;
+}
+
+#btn-reset,
+#btn-color {
+  flex: 0 1 auto;
+  width: 40%;
+  heigth: 1.3rem;
 }
 
 #grid-container {
-  width: 800px;
-  height: 800px;
-  background-color: aliceblue;
+  position: absolute;
+  right: 0px;
+
+  width: 70%;
+  height: 100%;
   margin: auto;
   display: grid;
 }
@@ -25,9 +58,5 @@ body {
 .grid-item {
   border-color: rgb(250, 3, 1);
   border-width: thin;
-  background-color: yellow;
-}
-
-.grid-item-colored {
-  background-color: rgb(250, 0, 250);
+  background-color: white;
 }

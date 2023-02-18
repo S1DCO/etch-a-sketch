@@ -13,11 +13,21 @@
       <h1>Etch-a-Sketch</h1>
     </header>
     <main>
-      <div>
-        <button id="btn-reset">RESET</button>
-        <input type = "color" id="btn-color"></input>
-      </div>
       <div id="outer-container" background-color="blue">
+        <div id="button-container">
+          <button id="btn-reset">RESET</button>
+          <input type="color" id="btn-color" />
+          <label class="label-grid--size" for="grid--size">100x100</label>
+          <input
+            type="range"
+            name="grid--size"
+            id="grid--size"
+            min="16"
+            max="150"
+            value="100"
+            size="1"
+          />
+        </div>
         <div id="grid-container" background-color="red"></div>
       </div>
     </main>
